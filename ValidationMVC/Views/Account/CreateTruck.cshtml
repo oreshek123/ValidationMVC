@@ -1,0 +1,78 @@
+﻿@model ValidationMVC.Models.DescriptionOfGood
+
+@{
+    ViewBag.Title = "CreateTruck";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreateTruck</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h3 class="bg-success" id="mes">@ViewBag.Message</h3>
+    <div class="form-horizontal">
+        <h4>DescriptionOfGood</h4>
+        <hr />
+        @Html.ValidationSummary(false, "Ошибки заполнения формы", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("countryId", null, "Выберите страну назначения", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CityId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("cityId", null, "Выберите город назначения", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DepartureTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("DepartureTypeId", null, "Выберите тип отправления", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DepartureTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.TariffsViewId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TariffsViewId", null, "Выберите вид тарифа", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TariffsViewId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+@section scripts
+{
+    <script>
+        setTimeout(function () {
+            $('#mes').remove();
+        }, 2000);
+    </script>
+}
